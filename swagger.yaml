@@ -32,7 +32,7 @@ schemes:
 - "https"
 - "http"
 paths:
-  /pet/{petId}/uploadImag:
+  /pet/{petId}/uploadImage:
     post:
       tags:
       - "pet"
