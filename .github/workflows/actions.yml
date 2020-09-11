@@ -10,10 +10,6 @@ jobs:
         ref: staging
     
     #this is where I would change the file
-    - shell: bash
-      run: |
-        value=`cat README.txt`
-        expr $value + "itworks" > math-homework.txt
 
     - name: check for changes
       run: git status
