@@ -11,6 +11,8 @@ jobs:
     
     #this is where I would change the file
 
+    - name: switching from HTTPS to SSH
+      run: git remote set-url origin ${{ secrets.ssh }}
     - name: check for changes
       run: git status
     - name: stage changed files
