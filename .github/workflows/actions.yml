@@ -10,6 +10,8 @@ jobs:
         ref: staging
     
     #this is where I would change the file
+    - name: delete the readme
+      run: git rm README.txt
 
     - name: switching from HTTPS to SSH
       run: git remote set-url origin ${{ secrets.ssh }}
