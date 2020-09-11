@@ -1,10 +1,14 @@
-# or
-on: [pull_request, issues]
+on: pull_request
+name: Update prod branch on release
 jobs:
-  my-job:
-    name: My Job
+  updateBranch:
+    name: Update staging branch
     runs-on: ubuntu-latest
     steps:
-    - name: Print a greeting
-      run: |
-        echo Hello there!
+    - uses: actions/checkout@master
+    - uses: Embraser01/update-git-branch-action@v1.0.0
+      if: github.ref == 'refs/heads/master'
+      with:
+        branch: staging
+        force: 1 # To push-force to the branch
+        githubToken: ${{ secrets.PAT_TOKEN }} # Github Token
