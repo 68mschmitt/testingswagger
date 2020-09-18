@@ -1,6 +1,20 @@
 on: workflow_dispatch
 name: Update prod branch on release
 jobs:
+  createafile:
+    name: creating a file for upload
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: master
+    - run: echo hello > world.txt
+    - uses: actions/upload-artifact@v2
+      with:
+        name: world
+        path: world.txt
+        
+        
   updateBranch:
     name: Update staging branch
     runs-on: ubuntu-latest
@@ -10,14 +24,9 @@ jobs:
         ref: staging
         
         
-    - uses: actions/upload-artifact@v2
+    - uses: actions/download-artifact@v2
       with:
-        name: readme-file
-        path: README.txt
-    
-    #this is where I would change the file. IE Download the artifact
-    - name: delete the readme
-      run: git rm README.txt
+        name: world
     
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.4.0
