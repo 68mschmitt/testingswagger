@@ -1,4 +1,4 @@
-on: workflow_dispatch
+on: push
 name: Update prod branch on release
 jobs:   
   updateBranch:
