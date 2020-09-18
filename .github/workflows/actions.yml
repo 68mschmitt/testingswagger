@@ -1,20 +1,6 @@
 on: workflow_dispatch
 name: Update prod branch on release
-jobs:
-  createafile:
-    name: creating a file for upload
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: master
-    
-    - uses: actions/upload-artifact@v2
-      with:
-        name: world
-        path: world.txt
-        
-        
+jobs:   
   updateBranch:
     name: Update staging branch
     runs-on: ubuntu-latest
@@ -23,8 +9,19 @@ jobs:
       with:
         ref: staging
         
-    - run: echo this is dev branch > world.txt
+    - name: Create a file
+      run: echo this is dev branch > world.txt
+      
+    - uses: actions/upload-artifact@v2
+      with:
+        name: world
+        path: world.txt    
         
+        
+        
+    - uses: actions/download-artifact@v2
+      with:
+        name: world
     
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.4.0
