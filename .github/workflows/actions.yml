@@ -23,7 +23,7 @@ jobs:
       with:
         ref: staging
         
-    - run: echo hello > world.txt
+    - run: echo this is dev branch > world.txt
         
     
     - name: Git Auto Commit
